@@ -4,9 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Задача1
+//Если скобки в s расставлены правильно, выведите
+//строку “Success". В противном случае выведите индекс (используя индексацию с единицы) первой закрывающей скобки, для
+//которой нет соответствующей открывающей. Если такой нет,
+//выведите индекс первой открывающей скобки, для которой нет
+//соответствующей закрывающей.
 namespace DataStructure {
     public static class StackToCheckBrackets {
         public static int IsBalanced(string str) {
+            //Использование Dictionary не работает в stepik
             var openSymbols = new List<char> { '(', '[', '{' };
             var closeSymbols = new List<char> { ')', ']', '}' };
             var stack = new Stack<char>();
