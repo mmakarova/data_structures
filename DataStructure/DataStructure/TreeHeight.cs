@@ -52,12 +52,9 @@ namespace DataStructure {
             return Height;
         }
         private int Height { get; set; }
-        private int PrevHeight { get; set; }
         private void CalculateHeight(Leaf leaf, int localHeight =1) {
             if (leaf.ChildLeaves == null) {
-                Height = localHeight;
                 localHeight = 1;
-               // PrevHeight = Height;
             } else {
                 localHeight++;
                 for (int i = 0; i < leaf.ChildLeaves.Count; i++) {                    
