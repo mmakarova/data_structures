@@ -10,10 +10,15 @@ public class Program
     public static void Main()
     {
         //Входные данные для Stepik
-        //string input = string.Empty;
-        //input = Console.ReadLine();
-        //int count = IsBalanced(input);
-        //Console.WriteLine(count == 0 ? "Success" : count);
+        //5
+        //4 -1 4 1 1
+        string input1 = string.Empty;
+        string input2 = string.Empty;
+        input1 = Console.ReadLine();
+        input2 = Console.ReadLine();
+        TreeHeight th = new TreeHeight(Convert.ToInt32(input1), input2);
+        
+        Console.WriteLine(th.GetHeight());
     }
 
 }
