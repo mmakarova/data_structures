@@ -59,9 +59,10 @@ namespace DataStructure {
                 localHeight = 1;
                // PrevHeight = Height;
             } else {
+                localHeight++;
                 for (int i = 0; i < leaf.ChildLeaves.Count; i++) {                    
                     Leaf el = leaf.ChildLeaves[i];
-                    CalculateHeight(el,localHeight++);                    
+                    CalculateHeight(el,localHeight);                    
                 }
                 if (localHeight > Height) Height = localHeight;
             }
