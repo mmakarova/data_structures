@@ -17,8 +17,22 @@ public class Program
         //input1 = Console.ReadLine();
         //input2 = Console.ReadLine();
         //TreeHeight th = new TreeHeight(Convert.ToInt32(input1), input2);
-        
+
         //Console.WriteLine(th.GetHeight());
+
+        string input1 = string.Empty;
+        List<string>? packages = null;
+        input1 = Console.ReadLine();
+        int number = Convert.ToInt32(input1.Split(' ')[1]);
+        for (int i = 0; i < number; i++) {
+            if (i == 0) { packages = new List<string>(); }
+            string? package = Console.ReadLine();
+            packages.Add(package);
+        }
+        StautsOfNetPackages queue = new StautsOfNetPackages(input1, packages);
+        var output = queue.GetOutputList();
+
+        Console.WriteLine(output);
     }
 
 }
