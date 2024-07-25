@@ -35,40 +35,33 @@ namespace DataStructure {
         public List<int> FinalList { get; set; }
         public int Size { get; set; }
 
+        public void AssignProcessStartTime(Package package, Package previousPackage) {
+            if (package.ArrivalTime >= previousPackage.ProcessStartTime + previousPackage.DurationTime) {
+                package.ProcessStartTime = package.ArrivalTime;
+            } else {
+                package.ProcessStartTime = previousPackage.ProcessStartTime + previousPackage.DurationTime;
+            }
+        }
         public void AddPackage(Package package) {
             if (QueueList.Count == 0) {
                 package.ProcessStartTime = package.ArrivalTime;
                 QueueList.Add(package);
                 FinalList.Add(package.ProcessStartTime);
             } else {
+                if (package.ArrivalTime >= QueueList[0].ProcessStartTime + QueueList[0].DurationTime) {
+                    QueueList.RemoveAt(0);
+                }
                 Package previousPackage = QueueList[QueueList.Count - 1];
-                if (Size > QueueList.Count) {                    
-                    if(package.ArrivalTime>= previousPackage.ProcessStartTime + previousPackage.DurationTime) {
-                        package.ProcessStartTime = package.ArrivalTime;
-                    } else {
-                        package.ProcessStartTime = previousPackage.ProcessStartTime + previousPackage.DurationTime;
-                    }
+                if (Size > QueueList.Count) {
+                    AssignProcessStartTime(package, previousPackage);
                     QueueList.Add(package);
                     FinalList.Add(package.ProcessStartTime);
                 } else {
-                    if (package.ArrivalTime >= QueueList[0].ProcessStartTime + QueueList[0].DurationTime) {
-                        if (package.ArrivalTime > previousPackage.ProcessStartTime + previousPackage.DurationTime) {
-                            package.ProcessStartTime = package.ArrivalTime;
-                        } else {
-                            package.ProcessStartTime = previousPackage.ProcessStartTime + previousPackage.DurationTime;
-                        }
-                        FinalList.Add(package.ProcessStartTime);
-                        QueueList.Add(package);
-                        QueueList.RemoveAt(0);
-
-                    } else {
-                        FinalList.Add(-1);
-                    }
+                    FinalList.Add(-1);
                 }
-
             }
-
         }
+
     }
     class Package {
         public Package() {
