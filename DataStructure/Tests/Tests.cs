@@ -65,36 +65,36 @@ namespace Tests {
                 //Assert.That(outputActual == outputExpected);
 
                 ////-------------2------------------
-                //size_number = "1 2";
-                //packages = new List<string>();
-                //packages.Add("0 1");
-                //packages.Add("1 1");
-                //queue = new StautsOfNetPackages(size_number, packages);
+                size_number = "1 2";
+                packages = new List<string>();
+                packages.Add("0 1");
+                packages.Add("1 1");
+                queue = new StautsOfNetPackages(size_number, packages);
 
-                ////actual
-                //valuesActual = queue.GetOutputString();
-                //outputActual = String.Join(Environment.NewLine, valuesActual);
+                //actual
+                valuesActual = queue.GetOutputString();
+                outputActual = String.Join(Environment.NewLine, valuesActual);
 
-                ////expected
-                //valuesExpected = new List<int>() { 0, 1 };
-                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+                //expected
+                valuesExpected = new List<int>() { 0, 1 };
+                outputExpected = String.Join(Environment.NewLine, valuesExpected);
 
-                //Assert.That(outputActual == outputExpected);
+                Assert.That(outputActual == outputExpected);
 
                 ////-------------3------------------
-                //size_number = "1 0";
-                //packages = null;
-                //queue = new StautsOfNetPackages(size_number, packages);
+                size_number = "1 0";
+                packages = null;
+                queue = new StautsOfNetPackages(size_number, packages);
 
-                ////actual
-                //valuesActual = queue.GetOutputString();
-                //outputActual = String.Join(Environment.NewLine, valuesActual);
+                //actual
+                valuesActual = queue.GetOutputString();
+                outputActual = String.Join(Environment.NewLine, valuesActual);
 
-                ////expected
-                //valuesExpected = new List<int>() { };
-                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+                //expected
+                valuesExpected = new List<int>() { };
+                outputExpected = String.Join(Environment.NewLine, valuesExpected);
 
-                //Assert.That(outputActual == outputExpected);
+                Assert.That(outputActual == outputExpected);
 
                 //-------------4------------------
                 size_number = "2 5";
