@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +10,16 @@ namespace DataStructure {
     public class StautsOfNetPackages {
         Queue queue;
         public StautsOfNetPackages(string size_number, List<string>? packages) {
+            queue = new Queue(Convert.ToInt32(size_number.Split(' ')[0]));
             if (packages != null) {
-                queue = new Queue(Convert.ToInt32(size_number.Split(' ')[0]));
                 for (int i = 0; i < packages.Count; i++) {
                     int arrivalTime = Convert.ToInt32(packages[i].Split(" ")[0]);
                     int durationTime = Convert.ToInt32(packages[i].Split(" ")[1]);
                     Package package = new Package() { ArrivalTime = arrivalTime, DurationTime = durationTime };
-                    queue.ProcessPackage();
                     queue.AddPackage(package);
                 }
-                for (int i = 0; i < queue.QueueList.Count; i++) {
-                    queue.ProcessPackage();
-                }
             }
+
 
         }
         public List<int> GetOutputString() { return queue.FinalList; }
@@ -31,53 +29,46 @@ namespace DataStructure {
         public Queue(int size) {
             this.Size = size;
             QueueList = new List<Package>();
+            FinalList = new List<int>();
         }
         public List<Package> QueueList { get; set; }
         public List<int> FinalList { get; set; }
         public int Size { get; set; }
-        public int OccupiedSize { get; set; } = 0;
-        public int WorkingTime { get; set; } = 0;
 
-        //1
-        public void ProcessPackage() {
-            if (QueueList.Count > 0) {
-                Package package = QueueList[0];
-                if (WorkingTime >= package.DurationTime) {
-                    QueueList.RemoveAt(0);
-                    FinalList.Add(WorkingTime);
-                    // package.ProcessStartTime = WorkingTime;
-                }
-            }
-
-        }
         public void AddPackage(Package package) {
-            if (Size - OccupiedSize > 0 && package.ProcessStartTime != -1) {
-                OccupiedSize++;
-                WorkingTime = WorkingTime + package.ArrivalTime;
+            if (QueueList.Count == 0) {
+                package.ProcessStartTime = package.ArrivalTime;
                 QueueList.Add(package);
+                FinalList.Add(package.ProcessStartTime);
             } else {
-                package.ProcessStartTime = -1;
+                Package previousPackage = QueueList[QueueList.Count - 1];
+                if (Size > QueueList.Count) {                    
+                    if(package.ArrivalTime>= previousPackage.ProcessStartTime + previousPackage.DurationTime) {
+                        package.ProcessStartTime = package.ArrivalTime;
+                    } else {
+                        package.ProcessStartTime = previousPackage.ProcessStartTime + previousPackage.DurationTime;
+                    }
+                    QueueList.Add(package);
+                    FinalList.Add(package.ProcessStartTime);
+                } else {
+                    if (package.ArrivalTime >= QueueList[0].ProcessStartTime + QueueList[0].DurationTime) {
+                        if (package.ArrivalTime > previousPackage.ProcessStartTime + previousPackage.DurationTime) {
+                            package.ProcessStartTime = package.ArrivalTime;
+                        } else {
+                            package.ProcessStartTime = previousPackage.ProcessStartTime + previousPackage.DurationTime;
+                        }
+                        FinalList.Add(package.ProcessStartTime);
+                        QueueList.Add(package);
+                        QueueList.RemoveAt(0);
+
+                    } else {
+                        FinalList.Add(-1);
+                    }
+                }
+
             }
 
-            //} else if (Size - OccupiedSize == 0) {
-            //    if (package.ArrivalTime == QueueList[Size - 1].ArrivalTime) {
-            //        EveryPackageProcessStartTime = EveryPackageProcessStartTime + "-1" + Environment.NewLine;
-            //    } else if (package.ArrivalTime > QueueList[Size - 1].ArrivalTime) {
-            //        if (package.ArrivalTime == QueueList[0].DurationTime) {
-            //            WorkingTime += QueueList[0].DurationTime;
-            //            EveryPackageProcessStartTime = EveryPackageProcessStartTime + Environment.NewLine + WorkingTime.ToString();
-            //            QueueList.RemoveAt(0);
-            //            QueueList.Add(package);
-            //        } else {
-            //            EveryPackageProcessStartTime = EveryPackageProcessStartTime + Environment.NewLine + "-1";
-            //        }
-
-
-            //    }
-
-            //}
         }
-
     }
     class Package {
         public Package() {
