@@ -33,6 +33,19 @@ public class Program
         //var output = String.Join(Environment.NewLine, queue.GetOutputString());
 
         //Console.WriteLine(output);
+
+        //string input1 = string.Empty;
+        //List<string> commands = new List<string>();
+        //input1 = Console.ReadLine();
+        //int number = Convert.ToInt32(input1);
+        //for (int i = 0; i < number; i++) {            
+        //    string command = Console.ReadLine();
+        //    commands.Add(command);
+        //}
+        //StackWithMaxValue queue = new StackWithMaxValue(input1, commands);
+        //var output = String.Join(Environment.NewLine, queue.MaxValues);
+
+        //Console.WriteLine(output);
     }
 
 }

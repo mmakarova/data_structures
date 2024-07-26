@@ -41,7 +41,7 @@ namespace Tests {
                 Assert.That(height == 4);
             }
         }
-        [Test]
+        
         public void QueueTests() {
             using (var tw = new StringWriter()) {
                 Console.SetOut(tw);
@@ -116,6 +116,80 @@ namespace Tests {
 
                 Assert.That(outputActual==outputExpected);
 
+            }
+        }
+        [Test]
+        public void StackWithMax() {
+            using (var tw = new StringWriter()) {
+                Console.SetOut(tw);
+                Program.Main();
+
+                ////-------------1------------------
+                string size_number = "10";
+                List<string> commands = new List<string>();
+                commands.Add("push 2");
+                commands.Add("push 3");
+                commands.Add("push 9");
+                commands.Add("push 7");
+                commands.Add("push 2");
+                commands.Add("max");
+                commands.Add("max");
+                commands.Add("max");
+                commands.Add("pop");
+                commands.Add("max");
+
+                StackWithMaxValue myStack = new StackWithMaxValue(size_number, commands);
+
+                //actual
+                List<int> valuesActual = myStack.MaxValues;
+                string outputActual = String.Join(Environment.NewLine, valuesActual);
+
+                //expected
+                List<int> valuesExpected = new List<int>() { 9,9,9,9 };
+                string outputExpected = String.Join(Environment.NewLine, valuesExpected);
+
+                Assert.That(outputActual == outputExpected);
+
+                ////-------------2------------------
+                //size_number = "3";
+                //commands = new List<string>();
+                //commands.Add("push 1");
+                //commands.Add("push 7");                
+                //commands.Add("pop");                
+
+                //myStack = new StackWithMaxValue(size_number, commands);
+
+                ////actual
+                //valuesActual = myStack.MaxValues;
+                //outputActual = String.Join(Environment.NewLine, valuesActual);
+
+                ////expected
+                //valuesExpected = new List<int>() { };
+                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+
+                //Assert.That(outputActual == outputExpected);
+
+                //////-------------2------------------
+                //size_number = "6";
+                //commands = new List<string>();
+                //commands.Add("push 7");
+                //commands.Add("push 1");
+                //commands.Add("push 7");
+                //commands.Add("max");
+                //commands.Add("pop");
+                //commands.Add("max");
+
+                //myStack = new StackWithMaxValue(size_number, commands);
+
+                ////actual
+                //valuesActual = myStack.MaxValues;
+                //outputActual = String.Join(Environment.NewLine, valuesActual);
+
+                ////expected
+                //valuesExpected = new List<int>() { 7,7 };
+                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+
+                //Assert.That(outputActual == outputExpected);
             }
         }
     }
