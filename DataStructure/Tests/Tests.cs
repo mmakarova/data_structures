@@ -192,5 +192,70 @@ namespace Tests {
                 //Assert.That(outputActual == outputExpected);
             }
         }
+
+        [Test]
+        public void MaxValueInWindow() {
+            using (var tw = new StringWriter()) {
+                Console.SetOut(tw);
+                Program.Main();
+
+                ////-------------1------------------
+                int windowSize = 4;
+                List<int> values = new List<int>() {2, 7, 3, 1, 5, 2, 6, 2 };
+
+                MaxValueInWindow myStack = new MaxValueInWindow(values, windowSize);
+
+                //actual
+                List<int> valuesActual = myStack.MaxValues;
+                string outputActual = String.Join(" ", valuesActual);
+
+                //expected
+                List<int> valuesExpected = new List<int>() {7, 7, 5, 6, 6 };
+                string outputExpected = String.Join(" ", valuesExpected);
+
+                Assert.That(outputActual == outputExpected);
+
+                ////-------------2------------------
+                //size_number = "3";
+                //commands = new List<string>();
+                //commands.Add("push 1");
+                //commands.Add("push 7");                
+                //commands.Add("pop");                
+
+                //myStack = new StackWithMaxValue(size_number, commands);
+
+                ////actual
+                //valuesActual = myStack.MaxValues;
+                //outputActual = String.Join(Environment.NewLine, valuesActual);
+
+                ////expected
+                //valuesExpected = new List<int>() { };
+                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+
+                //Assert.That(outputActual == outputExpected);
+
+                //////-------------2------------------
+                //size_number = "6";
+                //commands = new List<string>();
+                //commands.Add("push 7");
+                //commands.Add("push 1");
+                //commands.Add("push 7");
+                //commands.Add("max");
+                //commands.Add("pop");
+                //commands.Add("max");
+
+                //myStack = new StackWithMaxValue(size_number, commands);
+
+                ////actual
+                //valuesActual = myStack.MaxValues;
+                //outputActual = String.Join(Environment.NewLine, valuesActual);
+
+                ////expected
+                //valuesExpected = new List<int>() { 7,7 };
+                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+
+                //Assert.That(outputActual == outputExpected);
+            }
+        }
     }
 }

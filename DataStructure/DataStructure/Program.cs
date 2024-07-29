@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 public class Program
 {
@@ -46,7 +47,24 @@ public class Program
         //var output = String.Join(Environment.NewLine, queue.MaxValues);
 
         //Console.WriteLine(output);
+        Console.SetIn(new StreamReader(Console.OpenStandardInput(8192)));
+        string input1 = string.Empty;        
+        //List<int> commands = new List<int>();
+        //input1 = Console.ReadLine();
+        //int number = Convert.ToInt32(input1);
+        //string command = Console.ReadLine();
+        //for (int i = 0; i < number; i++) {            
+        //    commands.Add(Convert.ToInt32(command.Split(' ')[i]));
+        //}
+        //input1 = Console.ReadLine();
+        //number = Convert.ToInt32(input1);
+        //MaxValueInWindow queue = new MaxValueInWindow(commands,number);
+        //var output = String.Join(" ", queue.MaxValues);
+
+        //Console.WriteLine(output);
     }
+
+
 
 }
 
