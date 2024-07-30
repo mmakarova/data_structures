@@ -200,8 +200,8 @@ namespace Tests {
                 Program.Main();
 
                 ////-------------1------------------
-                int windowSize = 4;
-                List<int> values = new List<int>() {2, 7, 3, 1, 5, 2, 6, 2 };
+                int windowSize = 7;
+                List<int> values = new List<int>() { 73, 65, 24, 14, 44, 20, 65, 97, 27, 6, 42, 1, 6, 41, 16 };
 
                 MaxValueInWindow myStack = new MaxValueInWindow(values, windowSize);
 
@@ -210,29 +210,26 @@ namespace Tests {
                 string outputActual = String.Join(" ", valuesActual);
 
                 //expected
-                List<int> valuesExpected = new List<int>() {7, 7, 5, 6, 6 };
+                List<int> valuesExpected = new List<int>() { 73, 97, 97, 97, 97, 97, 97, 97, 42 };
                 string outputExpected = String.Join(" ", valuesExpected);
 
                 Assert.That(outputActual == outputExpected);
 
                 ////-------------2------------------
-                //size_number = "3";
-                //commands = new List<string>();
-                //commands.Add("push 1");
-                //commands.Add("push 7");                
-                //commands.Add("pop");                
+                windowSize = 4;
+                values = new List<int>() { 2, 7, 3, 1, 5, 2, 6, 2 };
 
-                //myStack = new StackWithMaxValue(size_number, commands);
+                myStack = new MaxValueInWindow(values, windowSize);
 
-                ////actual
-                //valuesActual = myStack.MaxValues;
-                //outputActual = String.Join(Environment.NewLine, valuesActual);
+                //actual
+                valuesActual = myStack.MaxValues;
+                outputActual = String.Join(" ", valuesActual);
 
-                ////expected
-                //valuesExpected = new List<int>() { };
-                //outputExpected = String.Join(Environment.NewLine, valuesExpected);
+                //expected
+                valuesExpected = new List<int>() { 7, 7, 5, 6, 6 };
+                outputExpected = String.Join(" ", valuesExpected);
 
-                //Assert.That(outputActual == outputExpected);
+                Assert.That(outputActual == outputExpected);
 
                 //////-------------2------------------
                 //size_number = "6";
